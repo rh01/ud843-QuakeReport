@@ -22,8 +22,8 @@ public class Earthquake {
 
 
     /*pubic methods that getter*/
-    public String getMag(){
-       return String.valueOf(mMag);}
+    public double getMag(){
+       return mMag;}
 
 
     public String getPlace(){return mPlace;}

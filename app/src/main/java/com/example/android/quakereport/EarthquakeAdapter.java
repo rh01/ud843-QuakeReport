@@ -1,6 +1,8 @@
 package com.example.android.quakereport;
 
 import android.app.Activity;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.StringTokenizer;
+
+import static com.example.android.quakereport.R.id.mag;
 
 /**
  * Created by shine on 17-8-11.
@@ -57,11 +62,29 @@ public class EarthquakeAdapter extends ArrayAdapter {
         // Get the {@link AndroidFlavor} object located at this position in the list
         Earthquake currentAndroidFlavor = (Earthquake) getItem(position);
 
+        /*Decimal 0.0 format*/
+        DecimalFormat formatter = new DecimalFormat("0.0");
+
+
         // Find the TextView in the list_item.xml layout with the ID version_name
-        TextView nameTextView = (TextView) listItemView.findViewById(R.id.mag);
+        TextView nameTextView = (TextView) listItemView.findViewById(mag);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
-        nameTextView.setText(currentAndroidFlavor.getMag());
+        nameTextView.setText(formatMagnitude(currentAndroidFlavor.getMag()));
+
+
+        // 为震级圆圈设置正确的背景颜色。
+        // 从 TextView 获取背景，该背景是一个 GradientDrawable。
+        GradientDrawable magnitudeCircle = (GradientDrawable) nameTextView.getBackground();
+
+        // 根据当前的地震震级获取相应的背景颜色
+        int magnitudeColor = getMagnitudeColor(currentAndroidFlavor.getMag());
+
+        // 设置震级圆圈的颜色
+        magnitudeCircle.setColor(magnitudeColor);
+
+
+
 
 
 
@@ -141,7 +164,61 @@ public class EarthquakeAdapter extends ArrayAdapter {
 
             return location;
         }
-        return location.substring(splitIndex+2, location.length());
+        return location.substring(splitIndex+3, location.length());
     }
+
+    /**
+     * 从十进制震级值返回格式化后的仅显示一位小数的震级字符串
+     * （如“3.2”）。
+     */
+    private String formatMagnitude(double magnitude) {
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        return magnitudeFormat.format(magnitude);
+    }
+    /**
+     * 指定颜色圆圈背景
+     */
+    private int getMagnitudeColor(double magnintude){
+        int magnitudeColorResourceId;
+        int magnitudeFloor = (int) Math.floor(magnintude);
+
+        switch (magnitudeFloor) {
+            case 0:
+            case 1:
+                magnitudeColorResourceId = R.color.magnitude1;
+                break;
+            case 2:
+                magnitudeColorResourceId = R.color.magnitude2;
+                break;
+            case 3:
+                magnitudeColorResourceId = R.color.magnitude3;
+                break;
+            case 4:
+                magnitudeColorResourceId = R.color.magnitude4;
+                break;
+            case 5:
+                magnitudeColorResourceId = R.color.magnitude5;
+                break;
+            case 6:
+                magnitudeColorResourceId = R.color.magnitude6;
+                break;
+            case 7:
+                magnitudeColorResourceId = R.color.magnitude7;
+                break;
+            case 8:
+                magnitudeColorResourceId = R.color.magnitude8;
+                break;
+            case 9:
+                magnitudeColorResourceId = R.color.magnitude9;
+                break;
+            default:
+                magnitudeColorResourceId = R.color.magnitude10plus;
+                break;
+        }
+        return ContextCompat.getColor(getContext(), magnitudeColorResourceId);
+    }
+
+
+
 
 }
