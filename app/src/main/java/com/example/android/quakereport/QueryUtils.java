@@ -60,7 +60,10 @@ public final class QueryUtils {
         // build up a list of Earthquake objects with the corresponding data.
         JSONObject earthquake_data = new JSONObject(SAMPLE_JSON_RESPONSE);
         JSONArray features = earthquake_data.getJSONArray("features");
-        Date dateObject;
+
+
+
+
 
         for (int i = 0; i < features.length(); i++) {
             JSONObject earthquake = features.getJSONObject(i);
@@ -68,10 +71,16 @@ public final class QueryUtils {
             double mag = properties.getDouble("mag");
             String place = properties.getString("place");
             long time = properties.getLong("time");
+            // 提取名为 "url" 的键的值
+            String url = properties.getString("url");
+
+            // 使用震级、地点、时间和来自 JSON 响应的 url，
+            // 创建一个新的 {@link Earthquake} 对象。
 
 
 
-            earthquakes.add(new Earthquake(mag, place, time));
+
+            earthquakes.add(new Earthquake(mag, place, time, url));
         }
 
 
