@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    >
 
     <TextView
         android:id="@+id/mag"
@@ -16,7 +18,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="dhshdf"
+        android:text="Near The"
+        />
+
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Japan"
         />
 
     <TextView
@@ -25,5 +35,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="hhhhh"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:text="3:00 PM" />
+
 
 </LinearLayout>

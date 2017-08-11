@@ -6,14 +6,15 @@ package com.example.android.quakereport;
 
 public class Earthquake {
     /* mag is magnitude */
-    private String mMag;
+    private double mMag;
     /* place that earthquake occurs*/
     private String mPlace;
     /* date for earthquake occurs*/
-    private String mDate;
+    private Long mDate;
+
 
     /*Constructor methods*/
-    public Earthquake(String mag, String place, String date){
+    public Earthquake(double mag, String place, Long date){
         mMag = mag;
         mPlace = place;
         mDate = date;
@@ -21,11 +22,18 @@ public class Earthquake {
 
 
     /*pubic methods that getter*/
-    public String getMag(){return mMag;}
+    public String getMag(){
+       return String.valueOf(mMag);}
+
 
     public String getPlace(){return mPlace;}
 
-    public String getDate(){return mDate;}
+    /**
+     * 返回地震的时间。
+     */
+    public long getTimeInMilliseconds() {
+        return mDate;
+    }
 
 
 }
