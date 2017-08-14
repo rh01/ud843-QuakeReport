@@ -30,7 +30,7 @@ This sample uses the Gradle build system. To build this project, use the
 
 <div align = center>
 
-![轻量级交互](http://olrs8j04a.bkt.clouddn.com/17-8-11/8000606.jpg?imageMogr2/thumbnail/!50p)
+![	轻量级交互](http://olrs8j04a.bkt.clouddn.com/17-8-11/8000606.jpg?imageMogr2/thumbnail/!50p)
 
 </div>
 
